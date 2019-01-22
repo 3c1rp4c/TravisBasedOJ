@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 export EX4_2_EXPECTED_SKIPPED_LINES_1="Skipped Lines"
 export EX4_2_EXPECTED_SKIPPED_LINES_2="Jersey	Position	Age"
 export EX4_2_EXPECTED_INVALID_LINES_1="Invalid Lines"

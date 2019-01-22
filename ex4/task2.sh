@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 COL_SIZE=10
 NAME_INDEX=8
