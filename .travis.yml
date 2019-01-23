@@ -1,0 +1,22 @@
+language: bash
+
+env:
+  - INPUT_LOG="log/worldcupplayerinfo.tsv"
+
+git:
+  submodules: false
+
+os:
+- linux
+
+before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+  - cd ex4/bats-core && sudo bash install.sh /usr/local
+
+script:
+  - cd ext4 && bats test/t_task2.bats --tap
+
+notifications:
+  email:
+    on_success: never
