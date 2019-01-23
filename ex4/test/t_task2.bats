@@ -1,5 +1,6 @@
 #!/usr/bin/env bats
 #
+
 source task2.sh
 
 [[ $(command -v process_log) ]] && {
@@ -42,7 +43,6 @@ source task2.sh
     [[ "${lines[0]}" =~ "$EX4_2_EXPECTED_AGE_1" ]]
     IFS='' read -r -a pattern_arr <<< "$EX4_2_EXPECTED_AGE_2"
     for pattern in "${pattern_arr[@]}";do
-        echo "${pattern}" >> /tmp/age.stats
         [[ "$output" =~ "$pattern" ]]
     done
 }
@@ -50,19 +50,18 @@ source task2.sh
 @test "check get_positions_stats" {
     run get_positions_stats
     [ $status -eq 0 ]
+    echo "$output" >> /tmp/output.log
     [[ "${lines[0]}" =~ "$EX4_2_EXPECTED_POS_1" ]]
-    echo "$output" > /tmp/pos.log
     IFS='' read -r -a pattern_arr <<< "$EX4_2_EXPECTED_POS_2"
     for pattern in "${pattern_arr[@]}";do
-        if ! [[ "$output" =~ "$pattern" ]];then
-            echo "$pattern" >> /tmp/pattern.log
-        fi
+        [[ "$output" =~ "$pattern" ]]
     done
 }
 
 @test "check get_max_age" {
     run get_max_age
     [ $status -eq 0 ]
+    echo "$output" >> /tmp/output.log
     [[ "${lines[0]}" =~ "$EX4_2_EXPECTED_OLDEST_1" ]]
     [[ "$output" =~ "$EX4_2_EXPECTED_OLDEST_2" ]]
 }
@@ -70,6 +69,7 @@ source task2.sh
 @test "check get_min_age" {
     run get_min_age
     [ $status -eq 0 ]
+    echo "$output" >> /tmp/output.log
     [[ "${lines[0]}" =~ "$EX4_2_EXPECTED_YOUNGEST_1" ]]
     IFS='' read -r -a pattern_arr <<< "$EX4_2_EXPECTED_YOUNGEST_2"
     for pattern in "${pattern_arr[@]}";do
@@ -80,6 +80,7 @@ source task2.sh
 @test "check get_longest_names" {
     run get_longest_names
     [ $status -eq 0 ]
+    echo "$output" >> /tmp/output.log
     [[ "${lines[0]}" =~ "$EX4_2_EXPECTED_LONGEST_1" ]]
     IFS='' read -r -a pattern_arr <<< "$EX4_2_EXPECTED_LONGEST_2"
     for pattern in "${pattern_arr[@]}";do
@@ -90,6 +91,7 @@ source task2.sh
 @test "check get_shortest_names" {
     run get_shortest_names
     [ $status -eq 0 ]
+    echo "$output" >> /tmp/output.log
     [[ "${lines[0]}" =~ "$EX4_2_EXPECTED_SHORTEST_1" ]]
     [[ "$output" =~ "$EX4_2_EXPECTED_SHORTEST_2" ]]
 }

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+
+LANG=en_US.UTF-8
 
 COL_SIZE=10
 NAME_INDEX=8
@@ -19,7 +22,7 @@ between20and30_arr=()
 above30_arr=()
 skipped_arr=()
 invalid_arr=()
-declare -A positions_dict
+declare -A -g positions_dict
 
 line_num=0
 
@@ -206,7 +209,6 @@ get_positions_stats() {
   for position in "${!positions_dict[@]}";do
     count=${positions_dict[$position]}
     ratio=$(echo "scale=2; 100*${count}/$line_num" | bc | sed 's/^\./0./')
-    echo $?
     echo -e "$position\t$count\t${ratio}%"
   done
 }
