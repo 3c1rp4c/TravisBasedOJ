@@ -8,7 +8,7 @@ source task2.sh
 }
 
 @test "shellcheck task2.sh" {
-    run /usr/bin/shellcheck task2.sh
+    run shellcheck task2.sh
     if [[ $status -ne 0 ]];then
         skip "$output"
     fi

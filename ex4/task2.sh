@@ -32,7 +32,7 @@ process_log() {
     #echo "$line"
     # Group	Country	Rank	Jersey	Position	Age	Selections	Club	Player	Captain		
     # A	Cameroon	56	13	Forward	25	26	Mainz 5  	Maxim Choupo-Moting	0		
-    IFS=$'\t' line_arr=($line)
+    IFS=$'\t' read -r -a line_arr <<< "$line"
     name="${line_arr[$NAME_INDEX]}"
     age=${line_arr[$AGE_INDEX]}
 
