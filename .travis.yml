@@ -12,10 +12,10 @@ os:
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - cd ex4/bats-core && sudo bash install.sh /usr/local
 
 script:
-  - cd ext4 && bats test/t_task2.bats --tap
+  - cd "$TRAVIS_BUILD_DIR/ex4/bats-core" && sudo bash install.sh /usr/local
+  - cd "$TRAVIS_BUILD_DIR/ex4" && bats test/t_task2.bats --tap
 
 notifications:
   email:
